@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
 
 def config = rootProject.ext.android
 def librarys = rootProject.ext.dependencies
@@ -15,6 +16,11 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -24,13 +30,28 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath rootProject.ext.classpath.butterknife_gradle_plugin
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile librarys.junit
+
     compile librarys.support_v4
     compile librarys.appcompat_v7
+    compile librarys.constraint_layout
+    compile librarys.multidex
+
+    annotationProcessor librarys.butterknife_compiler
+    annotationProcessor librarys.ARouter_compiler
     compile project(':OpenSourceLibrary')
 }

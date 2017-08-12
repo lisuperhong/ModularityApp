@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.company.commonbusiness.base.activity.BaseActivity;
+import com.company.commonbusiness.base.mvp.MvpBasePresenter;
 import com.company.commonbusiness.log.XLog;
 
 import butterknife.ButterKnife;
@@ -20,12 +21,13 @@ import butterknife.Unbinder;
  * @date Created on 2017/7/21 15:35
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<P extends MvpBasePresenter> extends Fragment {
 
     protected final String TAG = this.getClass().getSimpleName();
 
     protected BaseActivity activity;
     private Unbinder unbinder;
+    protected P presenter;
 
     //获取宿主Activity
     protected BaseActivity getHoldingActivity() {
@@ -76,6 +78,8 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
         XLog.d(TAG, "onDestroyView Invoke...");
         unbinder.unbind();
+        presenter.detachView();
+        presenter.unSubscibe();
     }
 
     //获取布局文件ID

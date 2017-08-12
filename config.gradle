@@ -1,7 +1,7 @@
 def supportVersion = "25.3.1"
 def retrofitVersion = "2.3.0"
 def okHttpVersion = "3.8.1"
-def butterKnifeVersion = "8.7.0"
+def butterKnifeVersion = "8.8.0"
 def daggerVersion = "2.8"
 def rxAndroidVersion = "2.0.1"
 def rxJavaVersion = "2.1.0"
@@ -9,6 +9,10 @@ def BRVAHVersion = "2.9.25"
 def glideVersion = "4.0.0"
 def statusBarVersion = "1.4.0"
 def loggerVersion = "2.1.1"
+def multidexVersion = "1.0.1"
+def toolsBuildGradle = "2.3.3"
+def ARouterApiVersion="1.2.1.1"
+def ARouterCompilerVersion="1.1.2.1"
 
 ext {
     android = [
@@ -20,14 +24,20 @@ ext {
             versionName      : "1.0"
     ]
 
+    classpath = [
+            butterknife_gradle_plugin: "com.jakewharton:butterknife-gradle-plugin:${butterKnifeVersion}",
+            tools_build_gradle: "com.android.tools.build:gradle:${toolsBuildGradle}"
+    ]
+
     dependencies = [
             //android-support
-            support_v4                     :"com.android.support:support-v4:${supportVersion}",
+            support_v4                     : "com.android.support:support-v4:${supportVersion}",
             appcompat_v7                   : "com.android.support:appcompat-v7:${supportVersion}",
             design                         : "com.android.support:design:${supportVersion}",
             recyclerview_v7                : "com.android.support:recyclerview-v7:${supportVersion}",
             cardview_v7                    : "com.android.support:cardview-v7:${supportVersion}",
             constraint_layout              : "com.android.support.constraint:constraint-layout:1.0.2",
+            multidex                       : "com.android.support:multidex:${multidexVersion}",
 
             //java8-support
             stream                         : "com.annimon:stream:1.0.8",
@@ -48,6 +58,7 @@ ext {
             //butterKnife
             butterknife                    : "com.jakewharton:butterknife:${butterKnifeVersion}",
             butterknife_compiler           : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+            butterknife_plugin             : "com.jakewharton:butterknife-gradle-plugin:${butterKnifeVersion}",
 
             //okHttp3
             okhttp3                        : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
@@ -65,6 +76,10 @@ ext {
 
             //logger
             logger                         : "com.orhanobut:logger:${loggerVersion}",
+
+            // ARouter
+            ARouter_api                    : "com.alibaba:arouter-api:${ARouterApiVersion}",
+            ARouter_compiler               : "com.alibaba:arouter-compiler:${ARouterCompilerVersion}",
 
             //others
             ormlite_android                : "com.j256.ormlite:ormlite-android:5.0",

@@ -6,7 +6,7 @@ package com.company.commonbusiness.base.mvp;
  * @date Created on 2017/7/21 10:03
  */
 
-public interface IMvpView<P> {
+public interface IMvpView {
 
-    void setPresenter(P presenter);
+    void setPresenter();
 }

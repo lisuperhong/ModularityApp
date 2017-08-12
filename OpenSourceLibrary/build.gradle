@@ -35,7 +35,7 @@ dependencies {
     compile librarys.okhttp3_logging_interceptor
 
     compile librarys.butterknife
-    annotationProcessor librarys.butterknife_compiler
+    compile librarys.ARouter_api
 
     compile librarys.glide
     annotationProcessor librarys.glide_compiler

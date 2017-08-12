@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.company.commonbusiness.base.mvp.MvpBasePresenter;
 import com.company.commonbusiness.log.XLog;
 import com.company.commonbusiness.util.ActivityUtils;
 
@@ -17,11 +18,11 @@ import butterknife.Unbinder;
  * @date Created on 2017/7/21 10:27
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<P extends MvpBasePresenter> extends AppCompatActivity {
 
     protected final String TAG = this.getClass().getSimpleName();
     private Unbinder unbinder;
-//    private P p;
+    protected P presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,12 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
     }
 
-//    @Override
-//    public void setPresenter(P presenter) {
-//        this.p = presenter;
-//        p.attachView(this);
-//    }
-
     /**
      * 处理跳转时传递的数据
      * @param intent
@@ -58,8 +53,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         XLog.d(TAG, "onDestroy Invoke...");
         ActivityUtils.removeActivity(this);
         unbinder.unbind();
-//        p.detachView();
-//        p.unSubscibe();
+        presenter.detachView();
+        presenter.unSubscibe();
     }
 
     @Override
