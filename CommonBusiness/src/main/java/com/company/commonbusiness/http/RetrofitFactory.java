@@ -23,20 +23,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitFactory {
 
-    private static final String BASE_URL = "https://precustomerservicebackend.crlandpm.com.cn";
     private static final int DEFAULT_TIMEOUT = 20;
 
     private boolean isTrustAll = true;
     private static RetrofitFactory instance;
-    private final Retrofit retrofit;
+    private Retrofit.Builder builder;
 
     private RetrofitFactory() {
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+        builder = new Retrofit.Builder()
                 .client(setOkHttpClient())
-                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
+                .addConverterFactory(GsonConverterFactory.create());
     }
 
     public static RetrofitFactory getInstance() {
@@ -105,10 +102,12 @@ public class RetrofitFactory {
      * @param <T> 泛型
      * @return
      */
-    public <T> T initService(final Class<T> service) {
+    public <T> T initService(final Class<T> service, String hostUrl) {
         if (service == null) {
             throw new RuntimeException("Api service is null!");
         }
+
+        Retrofit retrofit = builder.baseUrl(hostUrl).build();
         return retrofit.create(service);
     }
 
