@@ -1,1 +1,1 @@
-include ':app', ':OpenSourceLibrary', ':CommonBusiness'
+include ':app', ':OpenSourceLibrary', ':CommonBusiness', ':Kaiyanmodule'

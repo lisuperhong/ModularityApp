@@ -18,11 +18,10 @@ import butterknife.Unbinder;
  * @date Created on 2017/7/21 10:27
  */
 
-public abstract class BaseActivity<P extends MvpBasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected final String TAG = this.getClass().getSimpleName();
     private Unbinder unbinder;
-    protected P presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +52,6 @@ public abstract class BaseActivity<P extends MvpBasePresenter> extends AppCompat
         XLog.d(TAG, "onDestroy Invoke...");
         ActivityUtils.removeActivity(this);
         unbinder.unbind();
-        presenter.detachView();
-        presenter.unSubscibe();
     }
 
     @Override

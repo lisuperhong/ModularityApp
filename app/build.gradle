@@ -55,4 +55,5 @@ dependencies {
 
     annotationProcessor librarys.butterknife_compiler
     annotationProcessor librarys.ARouter_compiler
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
