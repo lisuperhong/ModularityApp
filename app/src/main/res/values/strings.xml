@@ -2,6 +2,18 @@
     <string name="app_name">ModularityApp</string>
     <string name="title_activity_main">MainActivity</string>
 
+    //main drawer
+    <string name="drawer_group_content">资讯</string>
+    <string name="drawer_group_options">选项</string>
+    <string name="drawer_menu_kaiyan">开眼视频</string>
+    <string name="drawer_menu_zhihu">知乎日报</string>
+    <string name="drawer_menu_wechat">微信精选</string>
+    <string name="drawer_menu_gank">干货集中营</string>
+    <string name="drawer_menu_vtex">V2EX</string>
+    <string name="drawer_menu_about">关于</string>
+    <string name="drawer_menu_collection">收藏</string>
+    <string name="drawer_menu_setting">设置</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

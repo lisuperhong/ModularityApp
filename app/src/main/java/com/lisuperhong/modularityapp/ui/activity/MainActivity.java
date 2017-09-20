@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -80,20 +80,33 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.drawer_menu_kaiyan:
+                break;
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            case R.id.drawer_menu_zhihu:
+                break;
 
-        } else if (id == R.id.nav_slideshow) {
+            case R.id.drawer_menu_wechat:
+                break;
 
-        } else if (id == R.id.nav_manage) {
+            case R.id.drawer_menu_gank:
+                break;
 
-        } else if (id == R.id.nav_share) {
+            case R.id.drawer_menu_vtex:
+                break;
 
-        } else if (id == R.id.nav_send) {
+            case R.id.drawer_menu_like:
+                break;
 
+            case R.id.action_settings:
+                break;
+
+            case R.id.drawer_menu_about:
+                break;
+
+            default:
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
