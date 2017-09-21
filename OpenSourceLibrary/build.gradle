@@ -42,4 +42,5 @@ dependencies {
 
     compile librarys.BRVAH
     compile librarys.statusBar
+    compile librarys.logger
 }

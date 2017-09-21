@@ -1,11 +1,7 @@
 package com.company.commonbusiness.base.activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-
-import com.company.commonbusiness.base.mvp.MvpBasePresenter;
-import com.company.commonbusiness.log.XLog;
-import com.company.commonbusiness.util.ActivityUtils;
+import com.company.commonbusiness.base.mvp.BasePresenter;
+import com.company.commonbusiness.base.mvp.IMvpView;
 
 /**
  * @author 李昭鸿
@@ -14,21 +10,24 @@ import com.company.commonbusiness.util.ActivityUtils;
  * @github: https://github.com/lisuperhong
  */
 
-public abstract class BaseMvpActivity<P extends MvpBasePresenter> extends BaseActivity {
+public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActivity implements IMvpView {
 
     protected P presenter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onViewCreated() {
+        super.onViewCreated();
+        setPresenter();
+        if (presenter != null) {
+            presenter.attachView(this);
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        XLog.d(TAG, "onDestroy Invoke...");
-        ActivityUtils.removeActivity(this);
-        presenter.detachView();
-        presenter.unSubscibe();
+        if (presenter != null) {
+            presenter.detachView();
+        }
     }
 }

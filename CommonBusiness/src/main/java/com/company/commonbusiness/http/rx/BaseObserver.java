@@ -2,6 +2,7 @@ package com.company.commonbusiness.http.rx;
 
 import com.company.commonbusiness.http.ExceptionHandle;
 import com.company.commonbusiness.log.XLog;
+import com.orhanobut.logger.Logger;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
@@ -19,13 +20,13 @@ public abstract class BaseObserver<T> implements Observer<T> {
 
     @Override
     public void onSubscribe(@NonNull Disposable d) {
-        XLog.d("BaseObserver", "onSubscribe");
+        Logger.d("BaseObserver onSubscribe");
         disposable = d;
     }
 
     @Override
     public void onNext(@NonNull T t) {
-        XLog.d(t.toString());
+        Logger.d("onNext：" + t.toString());
         success(t);
     }
 

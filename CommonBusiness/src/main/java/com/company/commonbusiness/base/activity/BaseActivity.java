@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
-import com.company.commonbusiness.base.mvp.MvpBasePresenter;
-import com.company.commonbusiness.log.XLog;
 import com.company.commonbusiness.util.ActivityUtils;
+import com.orhanobut.logger.Logger;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,21 +21,27 @@ import butterknife.Unbinder;
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected final String TAG = this.getClass().getSimpleName();
-    private Unbinder unbinder;
+    protected Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        XLog.d(TAG, "onCreate Invoke...");
+        Logger.d("onCreate Invoke...");
         ActivityUtils.addActivity(this);
         setContentView(getLayoutResId());
         unbinder = ButterKnife.bind(this);
+        onViewCreated();
 
         if (null != getIntent()) {
             handleIntent(getIntent());
         }
+
         initView();
         initData();
+    }
+
+    protected void onViewCreated() {
+
     }
 
     /**
@@ -46,10 +52,17 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    protected void setToolBar(Toolbar toolbar, String title) {
+        toolbar.setTitle(title);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        XLog.d(TAG, "onDestroy Invoke...");
+        Logger.d("onDestroy Invoke...");
         ActivityUtils.removeActivity(this);
         unbinder.unbind();
     }
@@ -57,18 +70,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        XLog.d(TAG, "onLowMemory Invoke...");
+        Logger.d("onLowMemory Invoke...");
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        XLog.d(TAG, "onBackPressed Invoke...");
+        Logger.d("onBackPressed Invoke...");
     }
 
-    public abstract int getLayoutResId();
+    protected abstract int getLayoutResId();
 
-    public abstract int initView();
+    protected abstract void initView();
 
-    public abstract int initData();
+    protected abstract void initData();
 }
