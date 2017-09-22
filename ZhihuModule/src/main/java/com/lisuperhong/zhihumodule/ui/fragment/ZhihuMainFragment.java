@@ -11,18 +11,19 @@ import com.lisuperhong.zhihumodule.R;
  */
 public class ZhihuMainFragment extends BaseFragment {
 
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.fragment_zhihu_main;
-    }
 
-    @Override
-    protected void initView() {
+	@Override
+	protected int getLayoutResId() {
+		return R.layout.fragment_zhihu_main;
+	}
 
-    }
+	@Override
+	protected void initView() {
 
-    @Override
-    protected void initData() {
+	}
 
-    }
+	@Override
+	protected void initData() {
+
+	}
 }

@@ -37,7 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         initView();
-        initData();
+        initData(savedInstanceState);
     }
 
     protected void onViewCreated() {
@@ -83,5 +83,5 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void initView();
 
-    protected abstract void initData();
+    protected abstract void initData(Bundle savedInstanceState);
 }

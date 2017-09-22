@@ -19,11 +19,6 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
-            }
-        }
     }
     buildTypes {
         release {
@@ -33,18 +28,7 @@ android {
     }
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath rootProject.ext.classpath.butterknife_gradle_plugin
-    }
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':CommonBusiness')
-    annotationProcessor librarys.butterknife_compiler
-    annotationProcessor librarys.ARouter_compiler
 }
