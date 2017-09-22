@@ -1,54 +1,78 @@
 package com.lisuperhong.modularityapp.ui.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.company.commonbusiness.base.activity.BaseActivity;
 import com.company.modularityapp.R;
+import com.company.modularityapp.R2;
+import com.lisuperhong.kaiyanmodule.ui.fragment.KaiyanMainFragment;
+import com.lisuperhong.modularityapp.app.Constants;
+import com.lisuperhong.zhihumodule.ui.fragment.ZhihuMainFragment;
 
-public class MainActivity extends AppCompatActivity
+import butterknife.BindView;
+
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+	@BindView(R2.id.drawer_layout)
+    DrawerLayout drawerLayout;
+	@BindView(R2.id.nav_view)
+	NavigationView navigationView;
+	@BindView(R2.id.toolbar)
+	Toolbar toolbar;
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+	private KaiyanMainFragment kaiyanMainFragment;
+	private ZhihuMainFragment zhihuMainFragment;
+	private FragmentManager fragmentManager;
+	private MenuItem lastMenuItem;
+	private String currentFragment = Constants.TYPE_KAIYAN;
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+	@Override
+	protected int getLayoutResId() {
+		return R.layout.activity_main;
+	}
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
+	@Override
+	protected void initView() {
+		setToolBar(toolbar, "开眼视频");
+		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+				R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+		drawerLayout.addDrawerListener(toggle);
+		toggle.syncState();
+
+		navigationView.setNavigationItemSelectedListener(this);
+	}
+
+	@Override
+	protected void initData(Bundle savedInstanceState) {
+		fragmentManager = getSupportFragmentManager();
+		lastMenuItem = navigationView.getMenu().findItem(R2.id.drawer_menu_kaiyan);
+
+		if (savedInstanceState != null) {
+			currentFragment = savedInstanceState.getString("currentFragment");
+			kaiyanMainFragment = (KaiyanMainFragment) fragmentManager.findFragmentByTag(Constants.TYPE_KAIYAN);
+			zhihuMainFragment = (ZhihuMainFragment) fragmentManager.findFragmentByTag(Constants.TYPE_ZHIHU);
+			lastMenuItem = navigationView.getMenu().findItem(getCurrentItem(currentFragment));
+			setCurrentFragment(currentFragment);
+		} else {
+			setCurrentFragment(currentFragment);
+		}
+	}
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+		super.onBackPressed();
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -82,18 +106,23 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.drawer_menu_kaiyan:
+            	currentFragment = Constants.TYPE_KAIYAN;
                 break;
 
             case R.id.drawer_menu_zhihu:
+            	currentFragment = Constants.TYPE_ZHIHU;
                 break;
 
             case R.id.drawer_menu_wechat:
+            	currentFragment = Constants.TYPE_WECHAT;
                 break;
 
             case R.id.drawer_menu_gank:
+            	currentFragment = Constants.TYPE_GANK;
                 break;
 
             case R.id.drawer_menu_vtex:
+            	currentFragment = Constants.TYPE_VTEX;
                 break;
 
             case R.id.drawer_menu_like:
@@ -109,8 +138,76 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if (lastMenuItem != null) {
+			lastMenuItem.setChecked(false);
+		}
+		lastMenuItem = item;
+		item.setChecked(true);
+		setCurrentFragment(currentFragment);
+
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putString("currentFragment", currentFragment);
+		super.onSaveInstanceState(outState);
+	}
+
+	private void setCurrentFragment(String type) {
+		if (!type.equals(currentFragment)) {
+			currentFragment = type;
+			FragmentTransaction transaction = fragmentManager.beginTransaction();
+			switch (type) {
+				case Constants.TYPE_KAIYAN:
+					toolbar.setTitle(lastMenuItem.getTitle().toString());
+					if (kaiyanMainFragment == null) {
+						kaiyanMainFragment = new KaiyanMainFragment();
+					}
+					transaction.replace(R.id.content_container, kaiyanMainFragment, Constants.TYPE_KAIYAN);
+					break;
+
+				case Constants.TYPE_ZHIHU:
+					toolbar.setTitle(lastMenuItem.getTitle().toString());
+					if (zhihuMainFragment == null) {
+						zhihuMainFragment = new ZhihuMainFragment();
+					}
+					transaction.replace(R.id.content_container, zhihuMainFragment, Constants.TYPE_ZHIHU);
+					break;
+
+				default:
+					break;
+			}
+
+			invalidateOptionsMenu();
+			transaction.commit();
+			drawerLayout.closeDrawer(GravityCompat.START);
+		} else {
+			//如果在当前页
+			drawerLayout.closeDrawer(GravityCompat.START);
+		}
+	}
+
+	private int getCurrentItem(String type) {
+		switch (type) {
+			case Constants.TYPE_KAIYAN:
+				return R2.id.drawer_menu_kaiyan;
+
+			case Constants.TYPE_ZHIHU:
+				return R2.id.drawer_menu_kaiyan;
+
+			case Constants.TYPE_GANK:
+				return R2.id.drawer_menu_gank;
+
+			case Constants.TYPE_WECHAT:
+				return R2.id.drawer_menu_wechat;
+
+			case Constants.TYPE_VTEX:
+				return R2.id.drawer_menu_vtex;
+		}
+
+		return R2.id.drawer_menu_kaiyan;
+	}
 }
