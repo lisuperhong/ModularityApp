@@ -189,7 +189,7 @@ public abstract class BaseFragment extends Fragment {
      * 就是采用Lazy方式加载的Fragment
      * 若不需要Lazy加载则initData方法内留空,初始化内容放到initView即可
      */
-    protected abstract int initView();
+    protected abstract void initView();
 
-    protected abstract int initData();
+    protected abstract void initData();
 }
