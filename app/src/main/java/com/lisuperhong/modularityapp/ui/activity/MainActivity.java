@@ -12,9 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.company.commonbusiness.base.activity.BaseActivity;
-import com.company.modularityapp.R;
-import com.company.modularityapp.R2;
 import com.lisuperhong.kaiyanmodule.ui.fragment.KaiyanMainFragment;
+import com.lisuperhong.modularityapp.R;
+import com.lisuperhong.modularityapp.R2;
 import com.lisuperhong.modularityapp.app.Constants;
 import com.lisuperhong.zhihumodule.ui.fragment.ZhihuMainFragment;
 
@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity
 
 	@Override
 	protected int getLayoutResId() {
-		return R.layout.activity_main;
+		return R2.layout.activity_main;
 	}
 
 	@Override
@@ -52,20 +52,20 @@ public class MainActivity extends BaseActivity
 		navigationView.setNavigationItemSelectedListener(this);
 	}
 
-	@Override
+    @Override
 	protected void initData(Bundle savedInstanceState) {
-		fragmentManager = getSupportFragmentManager();
-		lastMenuItem = navigationView.getMenu().findItem(R2.id.drawer_menu_kaiyan);
+        fragmentManager = getSupportFragmentManager();
+        lastMenuItem = navigationView.getMenu().findItem(R2.id.drawer_menu_kaiyan);
 
-		if (savedInstanceState != null) {
-			currentFragment = savedInstanceState.getString("currentFragment");
-			kaiyanMainFragment = (KaiyanMainFragment) fragmentManager.findFragmentByTag(Constants.TYPE_KAIYAN);
-			zhihuMainFragment = (ZhihuMainFragment) fragmentManager.findFragmentByTag(Constants.TYPE_ZHIHU);
-			lastMenuItem = navigationView.getMenu().findItem(getCurrentItem(currentFragment));
-			setCurrentFragment(currentFragment);
-		} else {
-			setCurrentFragment(currentFragment);
-		}
+        if (savedInstanceState != null) {
+            currentFragment = savedInstanceState.getString("currentFragment");
+            kaiyanMainFragment = (KaiyanMainFragment) fragmentManager.findFragmentByTag(Constants.TYPE_KAIYAN);
+            zhihuMainFragment = (ZhihuMainFragment) fragmentManager.findFragmentByTag(Constants.TYPE_ZHIHU);
+            lastMenuItem = navigationView.getMenu().findItem(getCurrentItem(currentFragment));
+            setCurrentFragment(currentFragment);
+        } else {
+            setCurrentFragment(currentFragment);
+        }
 	}
 
     @Override
@@ -104,34 +104,36 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        String selectedType = currentFragment;
+
         switch (item.getItemId()) {
-            case R.id.drawer_menu_kaiyan:
-            	currentFragment = Constants.TYPE_KAIYAN;
+            case R2.id.drawer_menu_kaiyan:
+                selectedType = Constants.TYPE_KAIYAN;
                 break;
 
-            case R.id.drawer_menu_zhihu:
-            	currentFragment = Constants.TYPE_ZHIHU;
+            case R2.id.drawer_menu_zhihu:
+                selectedType = Constants.TYPE_ZHIHU;
                 break;
 
-            case R.id.drawer_menu_wechat:
-            	currentFragment = Constants.TYPE_WECHAT;
+            case R2.id.drawer_menu_wechat:
+                selectedType = Constants.TYPE_WECHAT;
                 break;
 
-            case R.id.drawer_menu_gank:
-            	currentFragment = Constants.TYPE_GANK;
+            case R2.id.drawer_menu_gank:
+                selectedType = Constants.TYPE_GANK;
                 break;
 
-            case R.id.drawer_menu_vtex:
-            	currentFragment = Constants.TYPE_VTEX;
+            case R2.id.drawer_menu_vtex:
+                selectedType = Constants.TYPE_VTEX;
                 break;
 
-            case R.id.drawer_menu_like:
+            case R2.id.drawer_menu_like:
                 break;
 
-            case R.id.action_settings:
+            case R2.id.action_settings:
                 break;
 
-            case R.id.drawer_menu_about:
+            case R2.id.drawer_menu_about:
                 break;
 
             default:
@@ -143,7 +145,7 @@ public class MainActivity extends BaseActivity
 		}
 		lastMenuItem = item;
 		item.setChecked(true);
-		setCurrentFragment(currentFragment);
+		setCurrentFragment(selectedType);
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -157,14 +159,14 @@ public class MainActivity extends BaseActivity
 	}
 
 	private void setCurrentFragment(String type) {
-		if (!type.equals(currentFragment)) {
+		if (!type.equals(currentFragment) || type.equals(Constants.TYPE_KAIYAN)) {
 			currentFragment = type;
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
 			switch (type) {
 				case Constants.TYPE_KAIYAN:
 					toolbar.setTitle(lastMenuItem.getTitle().toString());
 					if (kaiyanMainFragment == null) {
-						kaiyanMainFragment = new KaiyanMainFragment();
+                        kaiyanMainFragment = new KaiyanMainFragment();
 					}
 					transaction.replace(R.id.content_container, kaiyanMainFragment, Constants.TYPE_KAIYAN);
 					break;
@@ -172,7 +174,7 @@ public class MainActivity extends BaseActivity
 				case Constants.TYPE_ZHIHU:
 					toolbar.setTitle(lastMenuItem.getTitle().toString());
 					if (zhihuMainFragment == null) {
-						zhihuMainFragment = new ZhihuMainFragment();
+                        zhihuMainFragment = new ZhihuMainFragment();
 					}
 					transaction.replace(R.id.content_container, zhihuMainFragment, Constants.TYPE_ZHIHU);
 					break;

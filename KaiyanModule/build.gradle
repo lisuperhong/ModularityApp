@@ -17,6 +17,7 @@ android {
         targetSdkVersion config.targetSdkVersion
         versionCode config.versionCode
         versionName config.versionName
+        resourcePrefix "kaiyan_"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
