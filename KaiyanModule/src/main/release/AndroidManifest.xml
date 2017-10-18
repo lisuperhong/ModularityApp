@@ -4,8 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:supportsRtl="true"
-        android:theme="@style/kaiyan_AppTheme">
+        android:supportsRtl="true">
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
