@@ -4,25 +4,24 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 
-import com.company.commonbusiness.base.fragment.BaseFragment;
+import com.company.commonbusiness.base.fragment.BaseMvpFragment;
 import com.lisuperhong.kaiyanmodule.R;
 import com.lisuperhong.kaiyanmodule.R2;
+import com.lisuperhong.kaiyanmodule.contract.HomeVideoContract;
+import com.lisuperhong.kaiyanmodule.presenter.HomeVideoPresenter;
 
 import butterknife.BindView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseMvpFragment<HomeVideoPresenter> implements HomeVideoContract.View {
 
     public static final String TITLE = "title";
 
     @BindView(R2.id.swipe_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R2.id.title)
-    TextView titleTv;
     @BindView(R2.id.rv_home)
     RecyclerView recyclerView;
 
@@ -49,7 +48,12 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        titleTv.setText(title);
+
+    }
+
+    @Override
+    public void setPresenter() {
+
     }
 
     @Override
