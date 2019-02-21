@@ -25,22 +25,21 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile librarys.rxjava
-    compile librarys.rxandroid
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api librarys.rxjava
+    api librarys.rxandroid
 
-    compile librarys.retrofit
-    compile librarys.adapter_rxjava2
-    compile librarys.converter_gson
-    compile librarys.okhttp3_logging_interceptor
+    api librarys.retrofit
+    api librarys.adapter_rxjava2
+    api librarys.converter_gson
+    api librarys.okhttp3_logging_interceptor
 
-    compile librarys.butterknife
-    compile librarys.ARouter_api
+    api librarys.ARouter_api
 
-    compile librarys.glide
+    api librarys.glide
     annotationProcessor librarys.glide_compiler
 
-    compile librarys.BRVAH
-    compile librarys.statusBar
-    compile librarys.logger
+    api librarys.BRVAH
+    api librarys.statusBar
+    api librarys.logger
 }

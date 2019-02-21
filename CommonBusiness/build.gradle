@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'  //kapt3插件
 
 def config = rootProject.ext.android
 def librarys = rootProject.ext.dependencies
@@ -30,28 +32,23 @@ android {
     }
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath rootProject.ext.classpath.butterknife_gradle_plugin
-    }
-}
-
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile librarys.junit
+    testImplementation librarys.junit
 
-    compile librarys.support_v4
-    compile librarys.appcompat_v7
-    compile librarys.constraint_layout
-    compile librarys.multidex
+    api librarys.support_v4
+    api librarys.appcompat_v7
+    api librarys.constraint_layout
+    api librarys.multidex
 
-    annotationProcessor librarys.butterknife_compiler
-    annotationProcessor librarys.ARouter_compiler
-    compile project(':OpenSourceLibrary')
+    kapt librarys.ARouter_compiler
+    api project(':OpenSourceLibrary')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+repositories {
+    mavenCentral()
 }

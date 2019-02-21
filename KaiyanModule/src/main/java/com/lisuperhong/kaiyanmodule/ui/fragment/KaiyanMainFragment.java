@@ -1,28 +1,18 @@
 package com.lisuperhong.kaiyanmodule.ui.fragment;
 
-
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.company.commonbusiness.base.fragment.BaseFragment;
 import com.lisuperhong.kaiyanmodule.R;
-import com.lisuperhong.kaiyanmodule.R2;
 import com.lisuperhong.kaiyanmodule.ui.adapter.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class KaiyanMainFragment extends BaseFragment {
 
-    @BindView(R2.id.tbl_kaiyan_main)
     TabLayout tabLayout;
-    @BindView(R2.id.viewPager_kaiyan_main)
     ViewPager viewPager;
 
 	private String[] tabTitles = {"首页", "发现", "热门", "我的"};
@@ -36,6 +26,8 @@ public class KaiyanMainFragment extends BaseFragment {
 
 	@Override
 	protected void initView() {
+		tabLayout = rootView.findViewById(R.id.tbl_kaiyan_main);
+		viewPager = rootView.findViewById(R.id.viewPager_kaiyan_main);
 		fragments = new ArrayList<>();
 		for (int i = 0; i < 4; i++) {
 			fragments.add(HomeFragment.newInstance(tabTitles[i]));

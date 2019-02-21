@@ -11,9 +11,6 @@ import android.view.ViewGroup;
 
 import com.orhanobut.logger.Logger;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * @author 李昭鸿
  * @desc: Fragment基类
@@ -51,7 +48,6 @@ public abstract class BaseFragment extends Fragment {
     protected View rootView;
     protected Activity activity;
     protected Context context;
-    private Unbinder unbinder;
 
     @Override
     public void onAttach(Context context) {
@@ -70,7 +66,6 @@ public abstract class BaseFragment extends Fragment {
         }
 
         rootView = inflater.inflate(getLayoutResId(), container, false);
-        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -133,7 +128,6 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
         Logger.d("onDestroyView Invoke...");
         isPrepared = false;
-        unbinder.unbind();
     }
 
     protected void onVisible() {

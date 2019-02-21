@@ -9,9 +9,6 @@ import android.support.v7.widget.Toolbar;
 import com.company.commonbusiness.util.ActivityUtils;
 import com.orhanobut.logger.Logger;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * @author 李昭鸿
  * @desc: Activity基类
@@ -21,7 +18,6 @@ import butterknife.Unbinder;
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected final String TAG = this.getClass().getSimpleName();
-    protected Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,7 +25,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         Logger.d("onCreate Invoke...");
         ActivityUtils.addActivity(this);
         setContentView(getLayoutResId());
-        unbinder = ButterKnife.bind(this);
         onViewCreated();
 
         if (null != getIntent()) {
@@ -64,7 +59,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         Logger.d("onDestroy Invoke...");
         ActivityUtils.removeActivity(this);
-        unbinder.unbind();
     }
 
     @Override
