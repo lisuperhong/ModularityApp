@@ -1,12 +1,14 @@
 package com.company.commonbusiness.http
 
+import java.io.Serializable
+
 /**
- * Author: 李昭鸿
- * Time: Create on 2019/2/21 17:58
- * Desc: 接口返回数据格式基类
+ * @author 李昭鸿
+ * @desc: 处理服务器统一返回数据
+ * @date Created on 2017/7/26 16:51
  */
 
-class BaseResponse<T>(val code: Int, val message: String, val content: T) {
+class BaseResponse<T>(val code: Int, val message: String, val content: T) : Serializable {
 
     val isSuccess: Boolean get() = code == 0
 }

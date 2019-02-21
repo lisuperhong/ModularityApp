@@ -1,6 +1,6 @@
 package com.company.commonbusiness.http.rx;
 
-import com.company.commonbusiness.http.ResponseEntity;
+import com.company.commonbusiness.http.BaseResponse;
 import com.company.commonbusiness.http.ServerException;
 
 import io.reactivex.Observable;
@@ -27,13 +27,13 @@ public class RxHelper {
      * @param <T> 数据实体类
      * @return ObservableTransformer
      */
-    public static <T> ObservableTransformer<ResponseEntity<T>, T> handleNetworkResult() {
-        return new ObservableTransformer<ResponseEntity<T>, T>() {
+    public static <T> ObservableTransformer<BaseResponse<T>, T> handleNetworkResult() {
+        return new ObservableTransformer<BaseResponse<T>, T>() {
             @Override
-            public ObservableSource<T> apply(@NonNull Observable<ResponseEntity<T>> upstream) {
-                return upstream.flatMap(new Function<ResponseEntity<T>, ObservableSource<T>>() {
+            public ObservableSource<T> apply(@NonNull Observable<BaseResponse<T>> upstream) {
+                return upstream.flatMap(new Function<BaseResponse<T>, ObservableSource<T>>() {
                     @Override
-                    public ObservableSource<T> apply(@NonNull ResponseEntity<T> result) throws Exception {
+                    public ObservableSource<T> apply(@NonNull BaseResponse<T> result) throws Exception {
                         if (result.isSuccess()) {
                             return createData(result.getContent());
                         } else {
