@@ -26,8 +26,8 @@ public class KaiyanMainFragment extends BaseFragment {
 
 	@Override
 	protected void initView() {
-		tabLayout = rootView.findViewById(R.id.tbl_kaiyan_main);
-		viewPager = rootView.findViewById(R.id.viewPager_kaiyan_main);
+		tabLayout = getRootView().findViewById(R.id.tbl_kaiyan_main);
+		viewPager = getRootView().findViewById(R.id.viewPager_kaiyan_main);
 		fragments = new ArrayList<>();
 		for (int i = 0; i < 4; i++) {
 			fragments.add(HomeFragment.newInstance(tabTitles[i]));

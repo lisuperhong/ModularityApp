@@ -43,8 +43,8 @@ public class HomeFragment extends BaseMvpFragment<HomeVideoPresenter> implements
 
     @Override
     protected void initView() {
-        swipeRefreshLayout = rootView.findViewById(R.id.swipe_refresh);
-        recyclerView = rootView.findViewById(R.id.rv_home);
+        swipeRefreshLayout = getRootView().findViewById(R.id.swipe_refresh);
+        recyclerView = getRootView().findViewById(R.id.rv_home);
     }
 
     @Override
