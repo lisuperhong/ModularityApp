@@ -3,7 +3,9 @@ if (isBuildModule.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
-apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'  //kapt3插件
 
 def config = rootProject.ext.android
 def librarys = rootProject.ext.dependencies
@@ -45,19 +47,14 @@ android {
     }
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath rootProject.ext.classpath.butterknife_gradle_plugin
-    }
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation librarys.junit
+    implementation project(':CommonBusiness')
+    kapt librarys.ARouter_compiler
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile librarys.junit
-    compile project(':CommonBusiness')
-    annotationProcessor librarys.butterknife_compiler
-    annotationProcessor librarys.ARouter_compiler
+repositories {
+    mavenCentral()
 }

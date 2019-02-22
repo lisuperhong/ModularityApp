@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 
 import com.company.commonbusiness.base.fragment.BaseFragment;
 import com.lisuperhong.zhihumodule.R;
-import com.lisuperhong.zhihumodule.R2;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -14,20 +14,15 @@ import android.view.MenuItem;
 import com.company.commonbusiness.base.activity.BaseActivity;
 import com.lisuperhong.kaiyanmodule.ui.fragment.KaiyanMainFragment;
 import com.lisuperhong.modularityapp.R;
-import com.lisuperhong.modularityapp.R2;
 import com.lisuperhong.modularityapp.app.Constants;
 import com.lisuperhong.zhihumodule.ui.fragment.ZhihuMainFragment;
 
-import butterknife.BindView;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-	@BindView(R2.id.drawer_layout)
     DrawerLayout drawerLayout;
-	@BindView(R2.id.nav_view)
 	NavigationView navigationView;
-	@BindView(R2.id.toolbar)
 	Toolbar toolbar;
 
 	private KaiyanMainFragment kaiyanMainFragment;
@@ -38,11 +33,14 @@ public class MainActivity extends BaseActivity
 
 	@Override
 	protected int getLayoutResId() {
-		return R2.layout.activity_main;
+		return R.layout.activity_main;
 	}
 
 	@Override
 	protected void initView() {
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		navigationView = (NavigationView) findViewById(R.id.nav_view);
+		toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setToolBar(toolbar, "开眼视频");
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
 				R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -55,7 +53,7 @@ public class MainActivity extends BaseActivity
     @Override
 	protected void initData(Bundle savedInstanceState) {
         fragmentManager = getSupportFragmentManager();
-        lastMenuItem = navigationView.getMenu().findItem(R2.id.drawer_menu_kaiyan);
+        lastMenuItem = navigationView.getMenu().findItem(R.id.drawer_menu_kaiyan);
 
         if (savedInstanceState != null) {
             currentFragment = savedInstanceState.getString("currentFragment");
@@ -107,33 +105,33 @@ public class MainActivity extends BaseActivity
         String selectedType = currentFragment;
 
         switch (item.getItemId()) {
-            case R2.id.drawer_menu_kaiyan:
+            case R.id.drawer_menu_kaiyan:
                 selectedType = Constants.TYPE_KAIYAN;
                 break;
 
-            case R2.id.drawer_menu_zhihu:
+            case R.id.drawer_menu_zhihu:
                 selectedType = Constants.TYPE_ZHIHU;
                 break;
 
-            case R2.id.drawer_menu_wechat:
+            case R.id.drawer_menu_wechat:
                 selectedType = Constants.TYPE_WECHAT;
                 break;
 
-            case R2.id.drawer_menu_gank:
+            case R.id.drawer_menu_gank:
                 selectedType = Constants.TYPE_GANK;
                 break;
 
-            case R2.id.drawer_menu_vtex:
+            case R.id.drawer_menu_vtex:
                 selectedType = Constants.TYPE_VTEX;
                 break;
 
-            case R2.id.drawer_menu_like:
+            case R.id.drawer_menu_like:
                 break;
 
-            case R2.id.action_settings:
+            case R.id.action_settings:
                 break;
 
-            case R2.id.drawer_menu_about:
+            case R.id.drawer_menu_about:
                 break;
 
             default:
@@ -195,21 +193,21 @@ public class MainActivity extends BaseActivity
 	private int getCurrentItem(String type) {
 		switch (type) {
 			case Constants.TYPE_KAIYAN:
-				return R2.id.drawer_menu_kaiyan;
+				return R.id.drawer_menu_kaiyan;
 
 			case Constants.TYPE_ZHIHU:
-				return R2.id.drawer_menu_kaiyan;
+				return R.id.drawer_menu_kaiyan;
 
 			case Constants.TYPE_GANK:
-				return R2.id.drawer_menu_gank;
+				return R.id.drawer_menu_gank;
 
 			case Constants.TYPE_WECHAT:
-				return R2.id.drawer_menu_wechat;
+				return R.id.drawer_menu_wechat;
 
 			case Constants.TYPE_VTEX:
-				return R2.id.drawer_menu_vtex;
+				return R.id.drawer_menu_vtex;
 		}
 
-		return R2.id.drawer_menu_kaiyan;
+		return R.id.drawer_menu_kaiyan;
 	}
 }

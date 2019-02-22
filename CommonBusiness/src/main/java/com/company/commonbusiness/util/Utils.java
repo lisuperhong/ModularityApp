@@ -9,10 +9,9 @@ import android.support.annotation.NonNull;
  * @desc: Utils初始化相关
  * @date Created on 2017/7/26 10:50
  */
-
 public final class Utils {
 
-     @SuppressLint("StaticFieldLeak")
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
 
     private Utils() {

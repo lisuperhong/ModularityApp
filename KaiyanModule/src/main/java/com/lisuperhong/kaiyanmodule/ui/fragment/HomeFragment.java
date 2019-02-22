@@ -7,11 +7,8 @@ import android.support.v7.widget.RecyclerView;
 
 import com.company.commonbusiness.base.fragment.BaseMvpFragment;
 import com.lisuperhong.kaiyanmodule.R;
-import com.lisuperhong.kaiyanmodule.R2;
 import com.lisuperhong.kaiyanmodule.contract.HomeVideoContract;
 import com.lisuperhong.kaiyanmodule.presenter.HomeVideoPresenter;
-
-import butterknife.BindView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,9 +17,7 @@ public class HomeFragment extends BaseMvpFragment<HomeVideoPresenter> implements
 
     public static final String TITLE = "title";
 
-    @BindView(R2.id.swipe_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R2.id.rv_home)
     RecyclerView recyclerView;
 
     private String title;
@@ -48,7 +43,8 @@ public class HomeFragment extends BaseMvpFragment<HomeVideoPresenter> implements
 
     @Override
     protected void initView() {
-
+        swipeRefreshLayout = getRootView().findViewById(R.id.swipe_refresh);
+        recyclerView = getRootView().findViewById(R.id.rv_home);
     }
 
     @Override

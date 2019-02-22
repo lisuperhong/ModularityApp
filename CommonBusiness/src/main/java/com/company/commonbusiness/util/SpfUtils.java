@@ -33,7 +33,7 @@ public final class SpfUtils {
      * @param object 保存的值
      */
     public static void put(String key, Object object) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(FILE_NAME,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         put(sp, key, object);
     }
@@ -46,7 +46,7 @@ public final class SpfUtils {
      * @param object 保存的值
      */
     public static void put(String spfName, String key, Object object) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(spfName,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(spfName,
                 Context.MODE_PRIVATE);
         put(sp, key, object);
     }
@@ -79,7 +79,7 @@ public final class SpfUtils {
      * @return 值
      */
     public static Object get(String key, Object defaultObject) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(FILE_NAME,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         return get(sp, key, defaultObject);
     }
@@ -93,7 +93,7 @@ public final class SpfUtils {
      * @return 值
      */
     public static Object get(String spfName, String key, Object defaultObject) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(spfName,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(spfName,
                 Context.MODE_PRIVATE);
         return get(sp, key, defaultObject);
     }
@@ -120,7 +120,7 @@ public final class SpfUtils {
      * @param key 关键字
      */
     public static void remove(String key) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(FILE_NAME,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         remove(sp, key);
     }
@@ -132,7 +132,7 @@ public final class SpfUtils {
      * @param key 关键字
      */
     public static void remove(String spfName, String key) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(spfName,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(spfName,
                 Context.MODE_PRIVATE);
         remove(sp, key);
     }
@@ -147,7 +147,7 @@ public final class SpfUtils {
      * 清除所有数据
      */
     public static void clearAll() {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(FILE_NAME,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         clearAll(sp);
     }
@@ -158,7 +158,7 @@ public final class SpfUtils {
      * @param spfName 保存的文件名
      */
     public static void clearAll(String spfName) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(spfName,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(spfName,
                 Context.MODE_PRIVATE);
         clearAll(sp);
     }
@@ -176,7 +176,7 @@ public final class SpfUtils {
      * @return {@code true}: Key存在<br>{@code false}: key不存在
      */
     public static boolean contains(String key) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(FILE_NAME,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         return contains(sp, key);
     }
@@ -189,7 +189,7 @@ public final class SpfUtils {
      * @return {@code true}: Key存在<br>{@code false}: key不存在
      */
     public static boolean contains(String spfName, String key) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(spfName,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(spfName,
                 Context.MODE_PRIVATE);
         return contains(sp, key);
     }
@@ -202,7 +202,7 @@ public final class SpfUtils {
      * 返回所有的键值对
      */
     public static Map<String, ?> getAll() {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(FILE_NAME,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         return getAll(sp);
     }
@@ -213,7 +213,7 @@ public final class SpfUtils {
      * @param spfName 保存文件名
      */
     public static Map<String, ?> getAll(String spfName) {
-        SharedPreferences sp = Utils.getContext().getSharedPreferences(spfName,
+        SharedPreferences sp = Utils.Companion.getContext().getSharedPreferences(spfName,
                 Context.MODE_PRIVATE);
         return getAll(sp);
     }
