@@ -17,7 +17,7 @@ def ARouterCompilerVersion="1.1.2.1"
 ext {
     android = [
             compileSdkVersion: 26,
-            buildToolsVersion: "26.0.0",
+            buildToolsVersion: "28.0.3",
             minSdkVersion    : 21,
             targetSdkVersion : 26,
             versionCode      : 1,

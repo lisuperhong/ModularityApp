@@ -92,7 +92,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(is, os);
+            CloseUtils.Companion.closeIO(is, os);
         }
     }
 
@@ -149,7 +149,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(bos);
+            CloseUtils.Companion.closeIO(bos);
         }
     }
 
@@ -212,7 +212,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(fc);
+            CloseUtils.Companion.closeIO(fc);
         }
     }
 
@@ -275,7 +275,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(fc);
+            CloseUtils.Companion.closeIO(fc);
         }
     }
 
@@ -333,7 +333,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(bw);
+            CloseUtils.Companion.closeIO(bw);
         }
     }
 
@@ -452,7 +452,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(reader);
+            CloseUtils.Companion.closeIO(reader);
         }
     }
 
@@ -514,7 +514,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(reader);
+            CloseUtils.Companion.closeIO(reader);
         }
     }
 
@@ -551,7 +551,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(fis, os);
+            CloseUtils.Companion.closeIO(fis, os);
         }
     }
 
@@ -585,7 +585,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(fc);
+            CloseUtils.Companion.closeIO(fc);
         }
     }
 
@@ -619,7 +619,7 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(fc);
+            CloseUtils.Companion.closeIO(fc);
         }
     }
 
