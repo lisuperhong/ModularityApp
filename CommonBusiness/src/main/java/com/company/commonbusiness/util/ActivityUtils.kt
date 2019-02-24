@@ -23,7 +23,7 @@ import java.util.HashMap
 class ActivityUtils private constructor() {
 
     init {
-        throw UnsupportedOperationException("u can't instantiate me...")
+//        throw UnsupportedOperationException("u can't instantiate me...")
     }
 
     companion object {
@@ -99,35 +99,35 @@ class ActivityUtils private constructor() {
          *
          * @return 栈顶Activity
          */
-        val topActivity: Activity?
-            get() {
-                try {
-                    val activityThreadClass = Class.forName("android.app.ActivityThread")
-                    val activityThread =
-                        activityThreadClass.getMethod("currentActivityThread").invoke(null)
-                    val activitiesField = activityThreadClass.getDeclaredField("mActivities")
-                    activitiesField.isAccessible = true
-                    val activities: Map<*, *>
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                        activities = activitiesField.get(activityThread) as HashMap<*, *>
-                    } else {
-                        activities = activitiesField.get(activityThread) as ArrayMap<*, *>
-                    }
-                    for (activityRecord in activities.values) {
-                        val activityRecordClass = activityRecord.javaClass
-                        val pausedField = activityRecordClass.getDeclaredField("paused")
-                        pausedField.isAccessible = true
-                        if (!pausedField.getBoolean(activityRecord)) {
-                            val activityField = activityRecordClass.getDeclaredField("activity")
-                            activityField.isAccessible = true
-                            return activityField.get(activityRecord) as Activity
-                        }
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-                return null
-            }
+//        val topActivity: Activity?
+//            get() {
+//                try {
+//                    val activityThreadClass = Class.forName("android.app.ActivityThread")
+//                    val activityThread =
+//                        activityThreadClass.getMethod("currentActivityThread").invoke(null)
+//                    val activitiesField = activityThreadClass.getDeclaredField("mActivities")
+//                    activitiesField.isAccessible = true
+//                    val activities: Map<*, *>
+//                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+//                        activities = activitiesField.get(activityThread) as HashMap<*, *>
+//                    } else {
+//                        activities = activitiesField.get(activityThread) as ArrayMap<*, *>
+//                    }
+//                    for (activityRecord in activities.values) {
+//                        val activityRecordClass = activityRecord.javaClass
+//                        val pausedField = activityRecordClass.getDeclaredField("paused")
+//                        pausedField.isAccessible = true
+//                        if (!pausedField.getBoolean(activityRecord)) {
+//                            val activityField = activityRecordClass.getDeclaredField("activity")
+//                            activityField.isAccessible = true
+//                            return activityField.get(activityRecord) as Activity
+//                        }
+//                    }
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                }
+//
+//                return null
+//            }
     }
 }

@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit
 class RetrofitManager private constructor() {
 
     private val builder: Retrofit.Builder
+    private val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
 
     companion object {
         private const val DEFAULT_TIMEOUT: Long = 60L
@@ -32,14 +33,17 @@ class RetrofitManager private constructor() {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-        val builder = OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
+        clientBuilder.addInterceptor(httpLoggingInterceptor)
             .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
 
-        return builder.build()
+        return clientBuilder.build()
+    }
+
+    fun getClientBuilder(): OkHttpClient.Builder {
+        return clientBuilder
     }
 
     /**

@@ -13,6 +13,11 @@ abstract class BaseMvpActivity<P : IMvpPresenter> : BaseActivity() {
 
     protected var presenter: P? = null
 
+    override fun initPresenter() {
+        setPresenter()
+        presenter?.attachView()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         if (presenter != null) {

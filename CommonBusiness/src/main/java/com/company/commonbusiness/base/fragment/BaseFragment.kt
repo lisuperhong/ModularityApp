@@ -72,6 +72,7 @@ abstract class BaseFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         isPrepared = true
         isFirstLoad = true
+        initPresenter()
         initView()
         lazyLoad()
     }
@@ -135,6 +136,10 @@ abstract class BaseFragment : Fragment() {
                 initData()
             }
         }
+    }
+
+    open fun initPresenter() {
+
     }
 
     protected abstract fun initView()

@@ -42,4 +42,6 @@ dependencies {
     api librarys.BRVAH
     api librarys.statusBar
     api librarys.logger
+    api librarys.gson
+    api librarys.eventBus
 }

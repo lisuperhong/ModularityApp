@@ -13,6 +13,10 @@ abstract class BaseMvpFragment<P : IMvpPresenter> : BaseFragment() {
 
     protected var presenter: P? = null
 
+    override fun initPresenter() {
+        setPresenter()
+        presenter?.attachView()
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         if (presenter != null) {

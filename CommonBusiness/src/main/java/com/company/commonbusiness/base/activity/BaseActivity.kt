@@ -32,6 +32,7 @@ abstract class BaseActivity : AppCompatActivity() {
             handleIntent(intent)
         }
 
+        initPresenter()
         initView()
         initData(savedInstanceState)
     }
@@ -56,7 +57,14 @@ abstract class BaseActivity : AppCompatActivity() {
      * 处理跳转时传递的数据
      * @param intent
      */
-    protected fun handleIntent(intent: Intent) {
+    open fun handleIntent(intent: Intent) {
+
+    }
+
+    /**
+     * 如果Activity是使用MVP，初始化presenter
+     */
+    open fun initPresenter() {
 
     }
 

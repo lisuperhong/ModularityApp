@@ -43,6 +43,7 @@ dependencies {
     api librarys.appcompat_v7
     api librarys.constraint_layout
     api librarys.multidex
+    api librarys.design
 
     kapt librarys.ARouter_compiler
     api project(':OpenSourceLibrary')

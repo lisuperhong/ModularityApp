@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference
  * @date Created on 2017/7/21 10:22
  */
 
-open class BasePresenter<V : IMvpView>(rootView: V) : IMvpPresenter {
+open class BasePresenter<V : IMvpView> constructor(rootView: V) : IMvpPresenter {
 
     private var viewRef: WeakReference<V>? = null
     private var compositeDisposable: CompositeDisposable? = null
