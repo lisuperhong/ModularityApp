@@ -1,0 +1,36 @@
+package com.lisuperhong.openeye.mvp.presenter
+
+import com.company.commonbusiness.base.mvp.BasePresenter
+import com.company.commonbusiness.http.rx.BaseObserver
+import com.lisuperhong.openeye.mvp.contract.DiscoveryContract
+import com.lisuperhong.openeye.mvp.model.DataRepository
+import com.lisuperhong.openeye.mvp.model.bean.BaseBean
+
+/**
+ * Author: lisuperhong
+ * Time: Create on 2018/8/11 17:36
+ * Github: https://github.com/lisuperhong
+ * Desc:
+ */
+class DiscoveryPresenter(rootView: DiscoveryContract.View) :
+    BasePresenter<DiscoveryContract.View>(rootView),
+    DiscoveryContract.Presenter {
+
+    override fun discovery() {
+        // 检测是否绑定 View
+        checkViewAttached()
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showContent(data)
+            }
+
+            override fun onFailure(errorMsg: String) {
+                rootView?.showMessage(errorMsg)
+                rootView?.hideLoading()
+            }
+        }
+        addDispose(observer)
+        DataRepository.instance.discovery(observer)
+    }
+}
