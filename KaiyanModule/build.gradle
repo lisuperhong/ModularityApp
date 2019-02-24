@@ -19,7 +19,7 @@ android {
         targetSdkVersion config.targetSdkVersion
         versionCode config.versionCode
         versionName config.versionName
-        resourcePrefix "kaiyan_"
+//        resourcePrefix "kaiyan_"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -27,6 +27,12 @@ android {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
             }
+            annotationProcessorOptions.includeCompileClasspath = true
+        }
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
         }
     }
     buildTypes {
@@ -34,6 +40,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 
     sourceSets {
@@ -53,6 +64,13 @@ dependencies {
     implementation project(':CommonBusiness')
     kapt librarys.ARouter_compiler
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation librarys.refreshLayout
+    // 播放器
+    implementation librarys.gsyVideoPlayer
+    // 底部菜单栏
+    implementation('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar') {
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
 }
 
 repositories {
