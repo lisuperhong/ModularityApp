@@ -20,11 +20,11 @@
         android:name="com.company.commonbusiness.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/kaiyan_app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/KaiyanAppTheme">
         <activity
             android:name=".ui.activity.SplashActivity"
             android:label="@string/app_name"
@@ -32,7 +32,6 @@
             android:theme="@style/FullScreenView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -49,7 +48,7 @@
         <activity android:name=".ui.activity.SpecialTopicsActivity" />
         <activity android:name=".ui.activity.SpecialTopicDetailActivity" />
         <activity android:name=".ui.activity.WebViewActivity" />
-        <activity android:name=".ui.activity.HotContentActivity"></activity>
+        <activity android:name=".ui.activity.HotContentActivity"/>
     </application>
 
 </manifest>

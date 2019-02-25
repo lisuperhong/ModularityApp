@@ -1,11 +1,11 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="KaiyanAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/kaiyan_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/kaiyan_colorPrimaryDark</item>
+        <item name="colorAccent">@color/kaiyan_colorAccent</item>
     </style>
 
     <style name="ActivityAnimation" parent="@android:style/Animation.Activity">
@@ -15,7 +15,7 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
-    <style name="FullScreenView" parent="AppTheme">
+    <style name="FullScreenView" parent="KaiyanAppTheme">
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>

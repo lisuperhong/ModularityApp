@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OpenEye</string>
+    <string name="kaiyan_app_name">OpenEye</string>
 
     <!-- Splash -->
     <string name="splash_intro_eg">Daily appetizers for your eyes, Bon eyepetit.</string>

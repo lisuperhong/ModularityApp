@@ -3,20 +3,23 @@
     package="com.lisuperhong.modularityapp">
 
     <application
-        android:name="com.lisuperhong.modularityapp.app.MainApplication"
+        android:name="com.company.commonbusiness.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/main_app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:replace="label">
         <activity
             android:name="com.lisuperhong.modularityapp.ui.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

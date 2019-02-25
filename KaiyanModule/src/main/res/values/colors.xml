@@ -4,9 +4,9 @@
     <!--<color name="colorPrimaryDark">#303F9F</color>-->
     <!--<color name="colorAccent">#FF4081</color>-->
 
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#EF5362</color>
+    <color name="kaiyan_colorPrimary">#FFFFFF</color>
+    <color name="kaiyan_colorPrimaryDark">#000000</color>
+    <color name="kaiyan_colorAccent">#EF5362</color>
 
     <color name="transparent">#00000000</color>
     <color name="white">#FFFFFF</color>

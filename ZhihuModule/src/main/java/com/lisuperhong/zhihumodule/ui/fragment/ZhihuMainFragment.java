@@ -13,8 +13,8 @@ public class ZhihuMainFragment extends BaseFragment {
 
 
 	@Override
-	protected int getLayoutResId() {
-		return R.layout.fragment_zhihu_main;
+	protected int getLayoutId() {
+		return  R.layout.fragment_zhihu_main;
 	}
 
 	@Override

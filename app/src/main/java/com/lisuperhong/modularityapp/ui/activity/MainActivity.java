@@ -6,15 +6,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.company.commonbusiness.base.activity.BaseActivity;
-import com.lisuperhong.kaiyanmodule.ui.fragment.KaiyanMainFragment;
 import com.lisuperhong.modularityapp.R;
 import com.lisuperhong.modularityapp.app.Constants;
+import com.lisuperhong.openeye.ui.fragment.KaiyanMainFragment;
 import com.lisuperhong.zhihumodule.ui.fragment.ZhihuMainFragment;
 
 
@@ -23,7 +21,6 @@ public class MainActivity extends BaseActivity
 
     DrawerLayout drawerLayout;
 	NavigationView navigationView;
-	Toolbar toolbar;
 
 	private KaiyanMainFragment kaiyanMainFragment;
 	private ZhihuMainFragment zhihuMainFragment;
@@ -32,20 +29,14 @@ public class MainActivity extends BaseActivity
 	private String currentFragment = Constants.TYPE_KAIYAN;
 
 	@Override
-	protected int getLayoutResId() {
+	protected int getLayoutId() {
 		return R.layout.activity_main;
 	}
 
 	@Override
 	protected void initView() {
-		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		navigationView = (NavigationView) findViewById(R.id.nav_view);
-		toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setToolBar(toolbar, "开眼视频");
-		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-				R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-		drawerLayout.addDrawerListener(toggle);
-		toggle.syncState();
+		drawerLayout = findViewById(R.id.drawer_layout);
+		navigationView = findViewById(R.id.nav_view);
 
 		navigationView.setNavigationItemSelectedListener(this);
 	}
@@ -162,7 +153,6 @@ public class MainActivity extends BaseActivity
 			FragmentTransaction transaction = fragmentManager.beginTransaction();
 			switch (type) {
 				case Constants.TYPE_KAIYAN:
-					toolbar.setTitle(lastMenuItem.getTitle().toString());
 					if (kaiyanMainFragment == null) {
                         kaiyanMainFragment = new KaiyanMainFragment();
 					}
@@ -170,7 +160,6 @@ public class MainActivity extends BaseActivity
 					break;
 
 				case Constants.TYPE_ZHIHU:
-					toolbar.setTitle(lastMenuItem.getTitle().toString());
 					if (zhihuMainFragment == null) {
                         zhihuMainFragment = new ZhihuMainFragment();
 					}

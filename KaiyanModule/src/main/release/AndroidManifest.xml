@@ -5,14 +5,25 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activity.VideoDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name=".ui.activity.CategoryDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.TagDetailActivity" />
+        <activity android:name=".ui.activity.SpecialTopicsActivity" />
+        <activity android:name=".ui.activity.SpecialTopicDetailActivity" />
+        <activity android:name=".ui.activity.WebViewActivity" />
+        <activity android:name=".ui.activity.HotContentActivity"/>
     </application>
 
 </manifest>

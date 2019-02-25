@@ -15,6 +15,9 @@ android {
     buildToolsVersion config.buildToolsVersion
 
     defaultConfig {
+        if (isBuildModule.toBoolean()) {
+            applicationId "com.lisuperhong.openeye"
+        }
         minSdkVersion config.minSdkVersion
         targetSdkVersion config.targetSdkVersion
         versionCode config.versionCode
@@ -60,6 +63,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:support-v4:26.1.0'
     testImplementation librarys.junit
     implementation project(':CommonBusiness')
     kapt librarys.ARouter_compiler
